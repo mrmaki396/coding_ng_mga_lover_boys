@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Please Forgive Me</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff5f7;
+        font-family: "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        width: 90%;
+        max-width: 400px;
+      }
+
+      h1 {
+        color: #444;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #777;
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        min-height: 50px;
+        position: relative;
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      #yesBtn {
+        background-color: #90ee90;
+        color: #2d5a2d;
+        z-index: 1;
+      }
+
+      #noBtn {
+        background-color: #ffb6c1;
+        color: #5a2d34;
+        /* Starts relative so it stays in the flex gap */
+        position: relative;
+        transition: all 0.2s ease;
+      }
+
+      .heart {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heart">🩹</div>
+      <h1>I'm so sorry...</h1>
+      <p>
+        I know I really messed up this time. Can we please talk? I'll do
+        whatever it takes to make it right.
+      </p>
+
+      <div class="btn-group">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+      </div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      let hasMoved = false;
+
+      const moveButton = () => {
+        // The first time it's hovered, switch to fixed positioning
+        if (!hasMoved) {
+          noBtn.style.position = "fixed";
+          hasMoved = true;
+        }
+
+        // Calculate random coordinates across the whole screen
+        // Subtracting 100 to keep the button fully visible
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 60);
+
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+      };
+
+      // Standard hover for computers
+      noBtn.addEventListener("mouseover", moveButton);
+
+      // Touch for phones
+      noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        moveButton();
+      });
+
+      // Redirect or Alert when she says Yes
+      yesBtn.addEventListener("click", () => {
+        alert("Thank you for giving me a chance. I love you❤️");
+        // Optional: window.location.href = "your-favorite-song-link";
+      });
+    </script>
+  </body>
+</html>
